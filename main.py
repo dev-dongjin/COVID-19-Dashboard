@@ -5,7 +5,7 @@ import file_handling as file_handle
 import element_capture as cap
 
 # 시간마다 반복시키기
-print("hello")
+print("Start")
 
 # Worldometer 정보 가져오기(완료)
 # chrolling.extract_links()

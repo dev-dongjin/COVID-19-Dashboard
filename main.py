@@ -11,6 +11,7 @@ print("Start")
 # chrolling.extract_links()
 
 # 사진다운로드 받기
+print("Test")
 cap.capture()
 
 # 사진올리기
@@ -24,6 +25,8 @@ cap.capture()
 #파일읽고 텍스트화 시키기.(완료)
 # with open('//Users/dongjinlee/programming/js/sandbox/python/tsotry/res.html', 'r', encoding='utf-8') as file1:
 #     new_content = file1.read()
+
+
 
 
 #티스토리 글쓰기(완료)

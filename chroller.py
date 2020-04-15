@@ -6,6 +6,7 @@ import file_handling as file
 us = None
 kr = None
 t = 0
+previous_date = None
 
 
 def extract_links():
@@ -47,6 +48,8 @@ def getKrDate(us):
     global kr
     kr = month+str(int(us.split(' ')[1])+1)+'일'
     print(kr)
+    global previous_date
+    previous_date = month+str(us.split(' ')[1])+'일'
 
 def getTotal(soup):
     #전세계 확진자 수 가져오기.

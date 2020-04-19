@@ -76,7 +76,7 @@ def get_write(new_content):
     print('여기!!!!!!!!!!')
     title = f"({chrolling.kr} 00시 기준)전세계 코로나 확진자 수 현황" #제목 (필수)
     content = f'{new_content}'
-    visibility = "0" #발행상태 0비공개-기본, 1보고,3발행
+    visibility = "3" #발행상태 0비공개-기본, 1보고,3발행
     category_id = "850377" #카테고리 아이디 기본값 0
     slogan = "" #문자주소
     tag = f"{chrolling.kr} 00시 코로나, {chrolling.kr} 00시 전세계 코로나 확진자 수 현황, {chrolling.kr} 코로나, 독일코로나, 미국코로나, 영국코로나, 이탈리아코로나, 일본코로나, 프랑스크로나, 한국코로나" #태그 ,로 구분

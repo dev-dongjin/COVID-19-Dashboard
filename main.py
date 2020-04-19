@@ -50,6 +50,7 @@ def chatBot(URL):
 
 
 # 최초 1회 시작
+print("1회 시작")
 start()
 
 # 시간마다 반복시키기

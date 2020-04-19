@@ -76,7 +76,7 @@ def get_write(new_content):
     print('여기!!!!!!!!!!')
     title = f"({chrolling.kr} 00시 기준)전세계 코로나 확진자 수 현황" #제목 (필수)
     content = f'{new_content}'
-    visibility = "3" #발행상태 0비공개-기본, 1보고,3발행
+    visibility = "0" #발행상태 0비공개-기본, 1보고,3발행
     category_id = "850377" #카테고리 아이디 기본값 0
     slogan = "" #문자주소
     tag = f"{chrolling.kr} 00시 코로나, {chrolling.kr} 00시 전세계 코로나 확진자 수 현황, {chrolling.kr} 코로나, 독일코로나, 미국코로나, 영국코로나, 이탈리아코로나, 일본코로나, 프랑스크로나, 한국코로나" #태그 ,로 구분
@@ -96,7 +96,7 @@ def file_write(capture):
     category_id = "0" #카테고리 아이디 기본값 0
     slogan = "" #문자주소
     tag = "" #태그 ,로 구분
-    files = {'uploadedfile': open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/{capture}.png', 'rb')}
+    files = {'uploadedfile': open(f'./data/{capture}.png', 'rb')}
     url = f'https://www.tistory.com/apis/post/attach?access_token={access_token}&blogName={blog_name}&title={title}&content={content}&visibility={visibility}&category={category_id}&slogan={slogan}&tag={tag}&output={output_type}'
     r = requests.post(url, files=files)
     print(r, r.text)

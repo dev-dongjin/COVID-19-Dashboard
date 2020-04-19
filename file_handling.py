@@ -1,11 +1,14 @@
 import chroller as chrol
 from bs4 import BeautifulSoup
 from googletrans import Translator
+import make_chart as mkChart
+
+rank_20 = None
 
 
 def y_readFile():
-    country_text = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/국가[{chrol.previous_date}].txt', 'r')
-    number_text = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/확진자수[{chrol.previous_date}].txt', 'r')
+    country_text = open(f'./data/국가[{chrol.previous_date}].txt', 'r')
+    number_text = open(f'./data/확진자수[{chrol.previous_date}].txt', 'r')
     info = {}
 
     country_lines = country_text.readlines()
@@ -25,8 +28,8 @@ def y_readFile():
     return info
 
 def t_readFile():
-    country_text = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/국가[{chrol.kr}].txt', 'r')
-    number_text = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/확진자수[{chrol.kr}].txt', 'r')
+    country_text = open(f'./data/국가[{chrol.kr}].txt', 'r')
+    number_text = open(f'./data/확진자수[{chrol.kr}].txt', 'r')
     info = []
 
     country_lines = country_text.readlines()
@@ -45,14 +48,14 @@ def t_readFile():
     return info
 
 def saveURL(url):
-    saveURL = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/URL[{chrol.kr}].txt', 'w')
+    saveURL = open(f'./data/URL[{chrol.kr}].txt', 'w')
     saveURL.write(url)
     saveURL.close()
 
 
 def readURL():
     print(chrol.previous_date)
-    readURL = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/URL[{chrol.previous_date}].txt', 'r')
+    readURL = open(f'./data/URL[{chrol.previous_date}].txt', 'r')
     url = readURL.readline()
     print(url)
     readURL.close()  
@@ -61,15 +64,14 @@ def readURL():
 
 def saveFile(soup):
     # 국가 파일 만들기
-    country_text = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/국가[{chrol.kr}].txt', 'w')
+    country_text = open(f'./data/국가[{chrol.kr}].txt', 'w')
     # 확진자 수 파일 만들기
-    number_text = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/확진자수[{chrol.kr}].txt', 'w')
+    number_text = open(f'./data/확진자수[{chrol.kr}].txt', 'w')
 
     
-
     # 순서대로 국가 정보 가져오기
     countries = soup.find(id='main_table_countries_today').find_all("a", attrs={"class": "mt_a"}, limit=50)
-    
+    print(countries)
     # 한국 인덱스 찾기
     i = 0
     for coun in countries:
@@ -87,10 +89,21 @@ def saveFile(soup):
 
     # 파일 쓰기
     count = 0
+
+    chart_countries = []
+    chart_numbers = []
     for country in countries:
-        country_text.write(country.text+'\n')
-        number_text.write(country.find_next("td").text+'\n')
+        countryName = country.text
+        number = country.find_next("td").text
+        country_text.write(countryName+'\n')
+        number_text.write(number+'\n')
+        if(count<5):
+            chart_countries.append(countryName)
+            chart_numbers.append(int(number.replace(",","")))
         count = count + 1
+        if count==19:
+            global rank_20
+            rank_20 = country.get('href')
         if count>i:
             break
     
@@ -98,9 +111,12 @@ def saveFile(soup):
     country_text.close()
     number_text.close()
   
+    # mkChart.makeGraph(chart_numbers, chart_countries)
+    # exit()
+
 
 def editHTML(list):
-    content = open("//Users/dongjinlee/programming/js/sandbox/python/tsotry/content.html")
+    content = open("./data/content.html")
     soup = BeautifulSoup(content, 'html.parser')
      
     y_info = y_readFile()
@@ -156,7 +172,7 @@ def editHTML(list):
         img_tags[0].contents[1]['src'] = list[i]
         i = i +1        
 
-    new_content = open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/new_content[{chrol.kr}].html', 'w')
+    new_content = open(f'./data/new_content[{chrol.kr}].html', 'w')
     new_content.write(str(soup))
 
     content.close()

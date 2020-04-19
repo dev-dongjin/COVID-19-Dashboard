@@ -9,17 +9,6 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 print("Start")
 sched = BlockingScheduler()
 
-# 최초 1회 시작
-start()
-
-# 시간마다 반복시키기
-sched.add_job(start, 'interval', hours=24)
-
-# 시작
-sched.start()
-print("완료")
-
-
 
 def start():
     chrolling.extract_links()
@@ -41,7 +30,7 @@ def start():
     file_handle.editHTML(list)
 
     #파일읽고 텍스트화 시키기.(완료)
-    with open(f'//Users/dongjinlee/programming/js/sandbox/python/tsotry/new_content[{chrolling.kr}].html', 'r', encoding='utf-8') as file1:
+    with open(f'./data/new_content[{chrolling.kr}].html', 'r', encoding='utf-8') as file1:
         new_content = file1.read()
 
     #티스토리 글쓰기(완료)
@@ -58,6 +47,18 @@ def chatBot(URL):
     bot.sendMessage(chat_id='1020617783', text=URL)
     print("chatBot 완료")
 
+
+
+# 최초 1회 시작
+start()
+
+# 시간마다 반복시키기
+# sched.add_job(start, 'interval', hours=24)
+sched.add_job(start,'cron', hour=5)
+
+# 시작
+sched.start()
+print("완료")
 #티스토리 직전파일 읽어오기.
 # tstory.get_read()
 

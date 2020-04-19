@@ -6,8 +6,8 @@ Italy
 France
 Germany
 UK
-Turkey
 Iran
+Turkey
 Belgium
 Russia
 Brazil
@@ -16,9 +16,9 @@ Netherlands
 Switzerland
 Portugal
 India
-Ireland
 Austria
-Peru
+Ireland
 Sweden
+Peru
 Israel
 S. Korea

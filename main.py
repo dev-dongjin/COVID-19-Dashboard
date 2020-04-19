@@ -2,7 +2,7 @@ import tstory as tistory
 import chroller as chrolling
 import file_handling as file_handle
 import element_capture as cap
-import telegram
+import telegram as tel
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 
@@ -42,8 +42,8 @@ def start():
 
 def chatBot(URL):
     print("chatBot")
-    token = '1001744474:AAEmsYJu9KHxb8Iza4d0OfHw2kpPE7BXZg4'
-    bot = telegram.Bot(token=token)
+    token = '1001744474:AAEYkSP8P9mIUcsPT_Pzx8pPIbKpuw1Pr_8'
+    bot = tel.Bot(token=token)
     bot.sendMessage(chat_id='1020617783', text=URL)
     print("chatBot 완료")
 

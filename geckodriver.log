@@ -1788,3 +1788,19 @@ JavaScript warning: https://www.worldometers.info/coronavirus/, line 13463: unre
 JavaScript error: https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js, line 56: TypeError: f[0] is undefined
 1587395272514	Marionette	INFO	Stopped listening on port 65458
 JavaScript error: https://eus.rubiconproject.com/usync.html?gdpr=0&gdpr_consent=, line 12: SecurityError: The operation is insecure.
+1587481666659	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/var/folders/kd/8c9ztt813037rmt61w50h_0r0000gn/T/rust_mozprofilegT3I7J"
+*** You are running in headless mode.
+1587481668218	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1587481668892	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1587481668894	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1587481668894	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1587481668894	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1587481673461	Marionette	INFO	Listening on port 57954
+1587481673499	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.worldometers.info/coronavirus/, line 13419: unreachable code after return statement
+JavaScript warning: https://www.worldometers.info/coronavirus/, line 13475: unreachable code after return statement
+JavaScript error: https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js, line 56: TypeError: f[0] is undefined
+JavaScript error: https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js, line 56: TypeError: f[0] is undefined
+JavaScript error: https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js, line 56: TypeError: f[0] is undefined
+1587481689383	Marionette	INFO	Stopped listening on port 57954
+JavaScript error: https://eus.rubiconproject.com/usync.html?gdpr=0&gdpr_consent=, line 12: SecurityError: The operation is insecure.

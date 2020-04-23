@@ -51,14 +51,14 @@ def chatBot(URL):
 
 # 최초 1회 시작
 print("1회 시작")
-start()
+# start()
 
 # 시간마다 반복시키기
 # sched.add_job(start, 'interval', hours=24)
-# sched.add_job(start,'cron', hour=5)
+sched.add_job(start,'cron', hour=5)
 
 # 시작
-# sched.start()
+sched.start()
 print("완료")
 #티스토리 직전파일 읽어오기.
 # tstory.get_read()

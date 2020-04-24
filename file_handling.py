@@ -111,7 +111,7 @@ def saveFile(soup):
     country_text.close()
     number_text.close()
   
-    # mkChart.makeGraph(chart_numbers, chart_countries)
+    mkChart.makeGraph(chart_numbers, chart_countries)
     # exit()
 
 

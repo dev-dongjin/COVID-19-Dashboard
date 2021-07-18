@@ -1,10 +1,10 @@
 import chroller as chrol
 from bs4 import BeautifulSoup
 from googletrans import Translator
-import make_chart as mkChart
+# import make_chart as mkChart
 
 rank_20 = None
-
+japan_index = 0
 
 def y_readFile():
     country_text = open(f'./data/국가[{chrol.previous_date}].txt', 'r')
@@ -31,12 +31,18 @@ def t_readFile():
     country_text = open(f'./data/국가[{chrol.kr}].txt', 'r')
     number_text = open(f'./data/확진자수[{chrol.kr}].txt', 'r')
     info = []
-
+    count=0
     country_lines = country_text.readlines()
     for c_line in country_lines:
         n_line = number_text.readline()
         c = c_line.replace('\n','')
         n = n_line.replace('\n','')
+        ##0503
+        if(c=="Japan"):
+            global japan_index
+            japan_index=count
+        count=count+1
+        ##
         info.append([c, n])
     country_text.close()
     number_text.close()
@@ -67,10 +73,10 @@ def saveFile(soup):
     country_text = open(f'./data/국가[{chrol.kr}].txt', 'w')
     # 확진자 수 파일 만들기
     number_text = open(f'./data/확진자수[{chrol.kr}].txt', 'w')
-
+    print(chrol.kr)
     
     # 순서대로 국가 정보 가져오기
-    countries = soup.find(id='main_table_countries_today').find_all("a", attrs={"class": "mt_a"}, limit=50)
+    countries = soup.find(id='main_table_countries_today').find_all("a", attrs={"class": "mt_a"}, limit=200)
     print(countries)
     # 한국 인덱스 찾기
     i = 0
@@ -111,7 +117,7 @@ def saveFile(soup):
     country_text.close()
     number_text.close()
   
-    mkChart.makeGraph(chart_numbers, chart_countries)
+    # mkChart.makeGraph(chart_numbers, chart_countries)
     # exit()
 
 
@@ -142,9 +148,15 @@ def editHTML(list):
     tn = soup.find(id="kn")
     tn.string = str((int(str(t_infos[korea][1]).replace(",",""))-int(str(y_info["S. Korea"][1]).replace(",",""))))
 
+     #일본 확진자 수 추가
+    japan = japan_index
+    j = soup.find(id="j")
+    j.string = t_infos[japan][1]
+    jn = soup.find(id="jn")
+    jn.string = str((int(str(t_infos[japan][1]).replace(",",""))-int(str(y_info["Japan"][1]).replace(",",""))))
 
     # 나라별 확진자 수 추가
-    for i in range(7):
+    for i in range(8):
         country_name = soup.find(id=f"{i}")
         if (i>1) :
             country_name.string=translate(t_infos[i][0])
@@ -160,7 +172,8 @@ def editHTML(list):
     print(p)
     url = readURL()
     p['href'] = url
-    p.string = url
+    # 5월 3일
+    p.string = "2020년 "+chrol.previous_date+" 확진자 수"
 
 
     print("START!!!!!!!!!")
@@ -177,37 +190,6 @@ def editHTML(list):
 
     content.close()
     new_content.close()
-    
-    
-    
-    
-    # # 보낼 파일 열기
-
-
-    # with open("//Users/dongjinlee/programming/js/sandbox/python/tsotry/content.html", 'r') as content:
-        # soup = BeautifulSoup(content, 'html.parser')
-        # all_ids = soup.find_all(id=True)
-        # print(all_ids)
-
-    #     # for id in all_ids:
-    #     #     id.string="ssss"
-
-    #     # print(all_ids)
-
-    #     test = content.read()
-
-    #     print(test)
-    #     print("klsdkjfl")
-    #     new_content = open('//Users/dongjinlee/programming/js/sandbox/python/tsotry/new_content.txt', 'w')
-
-        
-    #     
-
-    #     new_content.close()
-
-
-
-# <span id="kr"></span>, <span id="us"></span>, <span id="kr1"></span>, <span id="kr2"></span>, <span id="0"></span>, <span id="t"></span>, <span id="1"></span>, <span id="2"></span>, <span id="3"></span>, <span id="4"></span>, <span id="5"></span>, <span id="6"></span>, <span id="7"></span>, <span id="8"></span>, <span id="9"></span>, <span id="10"></span>, <span id="11"></span>, <span id="12"></span>, <span id="13"></span>, <a href="" id="p"></a>
 
 def translate(word):
     translator = Translator()

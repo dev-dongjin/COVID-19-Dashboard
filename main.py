@@ -3,11 +3,9 @@ import chroller as chrolling
 import file_handling as file_handle
 import element_capture as cap
 import telegram as tel
-from apscheduler.schedulers.blocking import BlockingScheduler
 
 
 print("Start")
-sched = BlockingScheduler()
 
 
 def start():
@@ -15,7 +13,7 @@ def start():
 
     # 사진다운로드 받기(완료)
     print("Test")
-    cap.capture()
+    # cap.capture()
 
     list = []
 
@@ -23,8 +21,8 @@ def start():
     tistory.init()
     i = 0
     for i in range(3):
-        i = i +1
-        list.append(tistory.file_write(f'my_screenshot_name{i}'))
+       i = i +1
+       list.append(tistory.file_write(f'my_screenshot_name{i}'))
 
     # 블로그 올릴 내용 수정하기
     file_handle.editHTML(list)
@@ -50,16 +48,16 @@ def chatBot(URL):
 
 
 # 최초 1회 시작
-print("1회 시작")
-# start()
+# print("1회 시작")
+start()
 
 # 시간마다 반복시키기
 # sched.add_job(start, 'interval', hours=24)
-sched.add_job(start,'cron', hour=5)
+#sched.add_job(start,'cron', hour=5)
 
 # 시작
-sched.start()
-print("완료")
+# sched.start()
+# print("완료")
 #티스토리 직전파일 읽어오기.
 # tstory.get_read()
 
@@ -68,9 +66,11 @@ print("완료")
 # print(new_content)
 
 # 티스토리 메소드
-# print('list의 첫번째 글'+tstory.get_list(1))
-# tstory.get_read()
-# tstory.get_category()
+# print('list의 첫번째 글'+tistory.get_list(1))
+# tistory.get_read(126)
+# tistory.init()
+# tistory.get_info()
+# tistory.get_category()
 
 
 # # 첫번째 리스트의 값 들고오기
@@ -80,7 +80,9 @@ print("완료")
 # new_post_id = new_list.json()['tistory']['item']['posts'][0]['id']
 
 # # post id로 포스트 가져오기
-# new_post = tistory.get_read(new_post_id)
+# new_post = tistory.get_read(126)
+# print(str("hellow orld"))
+# print(str(new_post))
 
 # # 포스트를 XML파일로 변환하기
 # root = ET.fromstring(new_post.text)

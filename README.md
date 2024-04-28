@@ -2,7 +2,7 @@
 
 > This bot automatically updates your [Tistory](https://www.tistory.com/) blog with the daily count of COVID-19 cases worldwide, providing an easy-to-read overview of the data.
 
-## 작동 방식
+## Features
 
 1. At midnight KST (Korean Standard Time) every day, the bot scrapes data from the [source](https://www.worldometers.info/coronavirus/).
 2. It retrieves the image of global COVID-19 cases and the top 6 countries with the highest number of cases, along with the counts for South Korea and Japan.
